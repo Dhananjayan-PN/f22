@@ -68,7 +68,7 @@ The amount of a transaction has the potential to be a good indicator for
 indentifying fraud transactions but a little bit of brainstorming will help you
 identify what other features may be a good predictor for the machine learning model.
 
-## `UserPredictor` class
+## `FraudDetector` class
 
 The goal of this project is to build a classifier that, given customer and
 transaction data, can predict whether those transactions are fraud or not. 
