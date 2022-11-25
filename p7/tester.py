@@ -47,10 +47,13 @@ def main():
     # step 2: predict
     test_customers = pd.read_csv(os.path.join("data", "{}_customers.csv".format(test_set)))
     test_transactions = pd.read_csv(os.path.join("data", "{}_transactions.csv".format(test_set)))
+    test_transactions = test_transactions.sort_values(by=['trans_num'], ignore_index=True)
     y_pred = model.predict(test_customers, test_transactions)
 
     # step 3: grading based on accuracy
-    y = np.array(pd.read_csv(os.path.join("data", "{}_is_fraud.csv".format(test_set)))["is_fraud"])
+    y = pd.read_csv(os.path.join("data", "{}_is_fraud.csv".format(test_set)))
+    y = y.sort_values(by=['trans_num'], ignore_index=True)
+    y = np.array(y["is_fraud"])
     accuracy = balanced_accuracy_score(y, y_pred)
     grade = round((np.clip(accuracy, lower, upper) - lower) / (upper - lower) * 100, 1)
 
