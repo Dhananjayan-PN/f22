@@ -9,9 +9,9 @@
 You are the owner of a credit card company and recently there has been 
 a spike in the number of fraud transaction reports. Unfortunately, there
 is no system to detect the fraud transactions before they are made.
-You are looking to use the transaction and card holder data of the
+You are looking to use transaction data and card holder data of the
 last two years and build a model to detect fraud transactions to prevent
-your customers from losing trust in your company.
+your company from losing customers due to safety concerns.
 
 You can decide what features to consider and how to create your
 classifier. Your grade will correspond to the accuracy of your
@@ -44,7 +44,7 @@ Each of the 3 datasets consist of 3 files (so there are 9 files total, of which 
 
 1. `???_customers.csv`: information about each customer/credit card
 2. `???_transactions.csv`: details about the credit card transactions made 
-3. `???_is_fraud.csv`: is_fraud=1 means the transaction is fraud; is_fraud=0 means it is not
+3. `???_is_fraud.csv`: is_fraud=1 means the transaction is fraud; is_fraud=0 means it is not fraud
 
 Here is some data in `train_customers.csv`:
 
@@ -62,7 +62,7 @@ After matching the transaction numbers, the credit card number and considering t
 
 Each row in `???_transactions.csv` represents a transactions made using customer's credit card. Each row contains the credit card number, date, time, the id of the the transaction they made, the name of the merchant, the latitude and longitude of the merchant, the category of the purchase and the amount of the transaction.
 
-Each row in `???_customers.csv` represents a credit card and the associated customer. Each row containts the credit card number, the first and last name of the customer, their gender and other useful details about every credit card holder.
+Each row in `???_customers.csv` represents a credit card and the associated customer. Each row contains the credit card number, the first and last name of the customer, their gender and other useful details about every credit card holder.
 
 The amount of a transaction has the potential to be a good indicator for
 indentifying fraud transactions but a little bit of brainstorming will help you
@@ -124,9 +124,9 @@ otherwise, you're predicting it not a fraud transaction.
 
 * start simple, then add complexity.  For example, you only need to get >50% accuracy to get some points, and a simple `LogisticRegression` based only on `amt` should have an accuracy score around 50%.
 
-* as you consider features for your model, it's easier to start with just the `???_transactions.csv` file (ignoring the customer data), as each transaction row corresponds to exactly one outcome/prediction.  We were able to train a simple model just based on the user data that achieved an accuracy of 65%, completely ignoring the customer data.
+* as you consider features for your model, it's easier to start with just the `???_transactions.csv` file (ignoring the customer data), as each transaction row corresponds to exactly one outcome/prediction.  We were able to train a simple model just based on the transaction data that achieved an accuracy of 65%, completely ignoring the customer data.
 
-* to reach a grade of 100%, you'll probably need to use the comster data that describes more information about a particular user.
+* to reach a grade of 100%, you'll probably need to use the customer data that describes more information about a particular customer.
 
 * you're welcome to learn new classification models in sklearn and use them for this project, but we imagine most of you will build pipelines based on LogisticRegression, the classifier we learned in class.  Remember that in many scenarios LogisticRegression does best in a pipeline where there is a preceding StandardScaler.  LogisticRegression doesn't like large/small numbers or non-centered data, so StandardScaler transforms the data to work better with LogisticRegression.
 
@@ -143,4 +143,4 @@ scores = cross_val_score(model, train_transactions[self.xcols], train_is_fraud["
 print(f"AVG: {scores.mean()}, STD: {scores.std()}\n")
 ```
 
-  * if you plan to work with your team members (not required, as usual), consider how you may want to divide the work.  One possibility: each team member could try a different model; after comparing them, all team members could submit the one model that scores best.  Alternatively, each team member could be responsible for computing different per-user stats to use as features for training/predicting.  Of course, avoid getting in a situation where you are dependent on any one person to complete the project; this project should be a reasonable amount of work, even for somebody working individually.
+  * if you plan to work with your team members (not required, as usual), consider how you may want to divide the work.  One possibility: each team member could try a different model; after comparing them, all team members could submit the one model that scores best.  Alternatively, each team member could be responsible for computing different per-customer stats to use as features for training/predicting.  Of course, avoid getting in a situation where you are dependent on any one person to complete the project; this project should be a reasonable amount of work, even for somebody working individually.
